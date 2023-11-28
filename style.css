@@ -1,0 +1,340 @@
+@charset "utf-8";
+
+*{
+  box-sizing: border-box;
+  border-width: 0;
+  border-style: solid;
+  margin: 0;
+}
+
+body{
+  margin: 0;
+}
+
+.header{
+  display: flex;
+  position: fixed;
+  z-index: 100;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  padding:0 20px;
+  /* background-color:lightgray; */
+  /* background-color: rgba(194,227, 238); */
+
+}
+
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+  margin-left: auto;
+}
+
+nav{
+  margin-left:auto;
+}
+
+.header ul{
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header a{
+  display: inline-block;
+  width: 100px;
+  text-align: center;
+}
+
+
+
+@media (max-width: 600px){
+
+  .header{
+    height: 50px;
+    flex-direction: column;
+    align-items: flex-end;
+  }
+
+  .menu-toggle {
+    display: block;
+    font-size: 1.5em;
+  }
+
+  .header ul {
+    display: none;
+    flex-direction: column;
+    text-align: center;
+    width: 50%;
+    position: absolute;
+    top: 50px; 
+    right: 0;
+    background-color: gray;
+    opacity: 0.9;
+    margin-top: 0;
+    border-top: 1px solid lightgray;
+    padding:0; 
+  }
+
+  .header a {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    background-color: white;
+    padding: 10px;
+  }
+
+  .header ul.active {
+    display: flex;
+  }
+}
+
+/* メインヴジュアル */
+.mv{
+  height: 450px;
+  max-width: 1600px;
+  margin: 0 auto; 
+}
+
+h1{
+  display: inline-block;
+  font-size: 40px;
+  margin-bottom: 10px;
+  position: relative;
+  top: 60%;
+  left: 10%;
+  z-index: 1;
+  font-size: min(11vw, 50px);
+  line-height: 1;
+  margin-bottom: 10px;
+  padding: 8px 20px;
+  background-color: rgba(242, 146, 29, 0.8);
+}
+
+
+
+.mv_img{
+  height: 90%;
+  position: absolute;
+    top: 50px;
+    right: 0;
+    z-index: -1;
+    /* opacity: 0; */
+    width: 70%;
+    height: 410px;
+    border-radius: 0 0 0 50px;
+    background-image: url(img/coderdojo-231111-003.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+@media (max-width: 600px){
+  .mv_title{
+  font-size: 35px;
+  }
+}
+
+/* 共通項 */
+section{
+  padding: 20px 0;
+}
+
+.container{
+  max-width: 1170px;
+  margin: 0 auto;
+  padding: 0 30px;
+}
+
+a{
+ text-decoration: none;
+ color: inherit;
+}
+
+h3{
+  text-align: center;
+}
+
+/* 共通項 */
+
+/* Coder Dojoとは */
+
+.section_intro{
+  margin-top: 16px;
+}
+.intro_title{
+  font-size: 24px;
+  line-height: 1.8;
+  text-align: center;
+  margin: 8px auto;
+}
+
+.intro_text{
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 720px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.title{
+  font-size: 24px;
+  line-height: 1.8;
+  margin: 15px auto;
+}
+
+/* できること */
+.color{
+  background-color: lightgrey;
+  padding: 30px 0;
+}
+
+.about{
+  display: grid;
+  column-gap: 15px;
+  grid-template-columns: repeat(3, 1fr);
+  overflow: hidden;
+  list-style-type: none;
+  margin-block-start: 0em;
+  margin-block-end: 0em;
+  padding-inline-start: 0px;
+
+}
+
+.about_li{
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+img{
+  max-width: 100%;
+  height: auto;
+  vertical-align: bottom;
+}
+
+.about_detail{
+  padding: 10px;
+  font-size: 14px;
+  line-height: 1.6;
+  background-color: white;
+  border-radius: 0 0 10px 10px;
+  height: 70%;
+}
+
+.about_detail_title{
+  text-align: center;
+  font-weight: bold;
+}
+
+.about_text{
+  text-align: center;
+  padding: 40px 0 20px;
+}
+
+@media (max-width: 600px){
+  .about{
+    grid-template-columns: 1fr;
+    column-gap: 15px;
+   }
+  .about_li{
+    margin-bottom: 15px;
+  }
+}
+
+
+/* 参加方法 */
+
+.participate_text{
+  text-align: center;
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+.btn{
+  display: inline-block;
+  display:flex;
+  justify-content: center;
+  max-width: 300px;
+  margin: 8px auto;
+  font-size: 18px;
+  text-align: center;
+  font-weight: bold;
+  background-color:lightslategrey;
+  line-height: 1;
+  letter-spacing: 0.05em;
+  color: #fff;
+  border-radius: 50px;
+  padding: 20px 10px;
+}
+
+@media (max-width: 600px){
+   .btn{
+    font-size: 18px;
+    padding: 10px 18px;
+    margin: 0 auto 16px;
+   }
+   .participate_text{
+    margin-bottom: 10px;
+    font-size: 13px;
+   }
+}
+ 
+
+
+.detail dt{
+margin-bottom: 8px;
+border-bottom: 1px solid gray;
+font-size: 20px;
+font-weight: bold;
+}
+.detail dd{
+  margin-bottom: 18px;
+}
+
+
+/* アクセス */
+.access{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-container {
+  width: 70%;
+  margin: 0 auto; 
+  position: relative;
+}
+
+iframe{
+  margin: 10px;
+  width:100%;
+}
+
+.logicaland{
+ margin-left:10px;
+ line-height: 2;
+ text-align: center;
+ font-weight: bold;
+}
+
+.ad{
+  text-align: center;
+}
+
+
+
+/* お問い合わせ */
+ .q_p{
+  text-align: center;
+  margin-bottom: 8px;
+ }
+
+
+footer{
+  margin-top: 8px;
+  background-color: #141414;
+  padding: 50px 20px;
+  color: white;
+  text-align: center;
+}

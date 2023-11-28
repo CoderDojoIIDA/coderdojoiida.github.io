@@ -1,6 +1,134 @@
-<html>
+<!DOCTYPE html>
+<html lang="ja">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
 </head>
-comming soon! By CodeDojoIIDA staffs.
+<body>
+  <main>
+    <header class="header">
+      <div class="menu-toggle"onclick="toggleMenu()">&#9776; </div>
+     <nav>
+      <ul>
+        <li><a href="#titile0""toggleMenu(); scrollToSection('top')">TOP</a></li>
+        <li><a href="#titile1"onclick="toggleMenu(); scrollToSection('titile1')">できること</a></li>
+        <li><a href="#titile2"onclick="toggleMenu(); scrollToSection('titile2')">参加方法</a></li>
+        <li><a href="#titile3"onclick="toggleMenu(); scrollToSection('titile3')">会場</a></li>
+        <li><a href="#titile4"onclick="toggleMenu(); scrollToSection('titile4')">お問い合わせ</a></li>
+      </ul>
+     </nav>
+    </header>
 
+    <div class="mv"id="titile0">
+         <h1 class="mv_title">CoderDojo Iida</h1>
+         <div class="mv_img"></div>
+    </div>
+   
+    <section class="section_intro" >
+      <div class="container">
+        <h2 class="intro_title">CoderDojoとは</h2>
+      <div class="intro_text">
+        <p>CoderDojoとは、子どもが無料でプログラミングを楽しめる場を提供する世界的な取り組みです。<br>決まったカリキュラムはなく、自分たちでやりたいことを考えながら自主的にプログラミングを学び、楽しんでもらいます。<br>プログラミングで困ったことがあれば、みんなで考えて解決していきます。<br>初心者から大人まで、誰でも参加できることが特徴です。</p>
+      </div>
+      </div>
+    </section>
+    
+    <section class="section_about" id="titile1">
+      <div class="color">
+        <div class="container">
+          <h3 class="title">CoderDojo飯田でできること</h3>
+          <ul class="about">
+           <li class="about_li">
+            <div class="about_img">
+              <img src="img/coderdojo-006.jpg" alt="マインクラフト画像">
+            </div>
+            <div class="about_detail">
+              <P class="about_detail_title">
+                Minecraft</p><p>ブロックで構成された世界の中で、自分だけの世界を作ったりモンスターを倒したりすることができるゲームです。</p>
+              </P>
+            </div>
+           </li>
+           <li class="about_li">
+            <div class="about_img">
+              <img src="img/coderdojo-231111-002.jpg" alt="スクラッチ画像">
+            </div>
+            <div class="about_detail">
+              <P class="about_detail_title">
+                scratch(スクラッチ）</p><p>お子さん向けのプログラミングツールで、ブロックを組み立てるようにプログラミングができ、ゲームやアニメーション、音楽などをつくることができます。
+              </P>
+            </div>
+           </li>
+           <li class="about_li">
+            <div class="about_img">
+              <img src="img/micro.bit_img.jpg" alt="マイクロビット画像">
+            </div>
+            <div class="about_detail">
+              <P class="about_detail_title">
+                micro.bit（マイクロビット）</p><p>パソコン上でプログラミングができ、そのプログラムをmicro:bit本体に転送することで、LEDを光らせたり、音を鳴らすことができます。
+              </P>
+            </div>
+           </li>
+          </ul>
+          <p class="about_text"> その他にも、Sphero Miniやドローン（DIJ Mini3 Pro)等ロボットや面白い玩具がたくさんあります。<br>ほかにも取り組んでみたいことがあれば、ぜひご相談ください。</p>    
+      </div>
+      </div>     
+    </section>
+    
+    <section class="section_participate" id="titile2">
+        <div class="container">
+          <h3 class="title">参加方法</h3>
+          <P class="participate_text">下記リンクから参加申し込みを行ってください。</P>
+          <a href="https://coderdojoiida.connpass.com/" class="btn">CoderDojo飯田参加申し込み</a>
+          <dl class="detail">
+            <dt>募集</dt>
+            <dd>ニンジャさん<br>小学生〜高校生の方（小学生は保護者の方同伴でお願いします）<br>
+              メンターさん<br>子供達にプログラミングを教えてみませんか？ボランティアとして参加する方を募集します、ぜひご参加ください。技術経験は問いません、やる気だけでOKです。</dd>
+          <dt>参加費</dt>
+          <dd>無料</dd>
+          <dt>開催予定</dt>
+            <dd>毎月　第二土曜日　13:30〜</dd>
+            <dt>持ち物</dt>
+            <dd>パソコン
+              <ul>
+              <li>タブレットでも可。</li>
+              <li>Wi-Fi接続ができるもの。</li>
+              <li>（数台は会場の端末を貸し出し可能です。お問い合わせ時にご相談ください。）</li>
+            </ul>
+            </dd>
+            </dl>
+        </div>
+     
+    </section>
+    <section class="section_access" id="titile3">
+      <div class="container"> 
+        <h3 class="title">会場</h3>
+        <div class="access">
+          <div class="map-container">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3247.2862482293667!2d137.83155572423297!3d35.52192330296687!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x601c99773f1643bd%3A0xa521489e4c5be45d!2z44Ot44K444Kr44Op44Oz44OJ!5e0!3m2!1sja!2sjp!4v1700618660322!5m2!1sja!2sjp" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+          </div>
+          <p class="logicaland">ロジカランド株式会社</p>
+          <p class="ad">〒395-0003 <br>
+          長野県飯田市上郷別府2689-1</p>
+        </div>
+      </div>
+    </section>
+
+  <section class="section_q" id="titile4">
+   <div class="container">
+    <h3 class="title">お問い合わせ</h3>
+    <p class="q_p">お問い合わせはこちらから</p>
+    <a href="https://docs.google.com/forms/d/19lYlTbOIoWWlmIpeKSb_mGyRyFU7roETOTT_w2p1-xY/viewform?edit_requested=true" class="btn">お問い合わせ</a>   
+   </div>
+  </section>
+
+   <footer>
+   <p>Copyright © CoderDojo 飯田 All Rights Reserved.</p>
+   </footer>
+  </main>
+  <script src="js/main.js"></script>
+</body>
 </html>
+
+
