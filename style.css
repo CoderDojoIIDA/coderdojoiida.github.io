@@ -824,9 +824,28 @@ ul{
   font-weight: 800;
 }
 
+.next_event{
+  transition: transform .2s, box-shadow .2s;
+}
+
+.next_event:hover{
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(0, 0, 0, .28);
+}
+
+.next_event:not(.is-loaded) .next_date{
+  font-size: 17px;
+}
+
 .next_time{
   font-weight: 700;
   color: var(--ink-sub);
+}
+
+.next_more{
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--teal-dark);
 }
 
 @media (max-width: 600px){

@@ -1,0 +1,63 @@
+name: サイトの公開（次回イベント情報つき）
+
+# main への push 時と、毎日の定期実行時に、connpass から次回イベントを取得して
+# GitHub Pages に公開する。リポジトリへのコミットは行わない。
+#
+# 事前設定: Settings → Pages → Build and deployment → Source を「GitHub Actions」にする
+
+on:
+  push:
+    branches: [main]
+  schedule:
+    # 毎日 6:00 と 18:00（日本時間）
+    - cron: "0 21,9 * * *"
+  workflow_dispatch: # Actions 画面から手動実行もできる
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: connpass から次回イベントを取得
+        # 取得に失敗しても公開は続ける（リポジトリ内の data/next-event.json が使われ、
+        # 古ければサイト側で「connpassでご確認ください」表示になる）
+        continue-on-error: true
+        run: python3 scripts/fetch_next_event.py
+
+      - name: 公開するファイルをまとめる
+        run: |
+          mkdir _site
+          rsync -a \
+            --exclude '.git' --exclude '.github' --exclude 'scripts' \
+            --exclude '_site' --exclude 'LICENSE' --exclude '.gitignore' \
+            ./ _site/
+          find _site -type f | sort
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

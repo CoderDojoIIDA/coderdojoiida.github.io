@@ -15,26 +15,48 @@ function closeMenu() {
   setMenu(false);
 }
 
-// 次回の開催日（毎月第二土曜日）を表示する
+// 次回の開催情報を表示する
+// data/next-event.json は GitHub Actions が connpass のフィードから毎日更新している
 (function showNextEvent() {
-  function secondSaturday(year, month) {
-    var first = new Date(year, month, 1);
-    var offset = (6 - first.getDay() + 7) % 7; // 最初の土曜日までの日数
-    return new Date(year, month, 1 + offset + 7);
-  }
-
-  var now = new Date();
-  var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-  var next = secondSaturday(today.getFullYear(), today.getMonth());
-  if (next < today) {
-    next = secondSaturday(today.getFullYear(), today.getMonth() + 1);
-  }
-
   var week = ['日', '月', '火', '水', '木', '金', '土'];
-  var text = next.getFullYear() + '年' + (next.getMonth() + 1) + '月' + next.getDate() + '日（' + week[next.getDay()] + '）';
-  var isToday = next.getTime() === today.getTime();
 
-  var box = document.getElementById('next-event');
-  document.getElementById('next-date').textContent = isToday ? '本日 ' + text : text;
-  box.hidden = false;
+  function pad(n) {
+    return (n < 10 ? '0' : '') + n;
+  }
+
+  // "2026-11-14T13:30:00+09:00" を日本時間として読み取る（閲覧者のタイムゾーンに左右されないように）
+  function parseJst(iso) {
+    var m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(iso || '');
+    if (!m) return null;
+    return { y: +m[1], mo: +m[2], d: +m[3], h: +m[4], mi: +m[5] };
+  }
+
+  function render(ev) {
+    var start = parseJst(ev.start);
+    var end = parseJst(ev.end);
+    if (!start) return;
+
+    // 終了時刻を過ぎていたら表示しない（JSONの更新待ちの間など）
+    var endTime = new Date(ev.end || ev.start).getTime();
+    if (isNaN(endTime) || endTime < Date.now()) return;
+
+    var dow = week[new Date(Date.UTC(start.y, start.mo - 1, start.d)).getUTCDay()];
+    var time = pad(start.h) + ':' + pad(start.mi) + '〜' + (end ? pad(end.h) + ':' + pad(end.mi) : '');
+
+    document.getElementById('next-label').textContent = ev.number ? '次回の開催（#' + ev.number + '）' : '次回の開催';
+    document.getElementById('next-date').textContent = start.y + '年' + start.mo + '月' + start.d + '日（' + dow + '）';
+    document.getElementById('next-time').textContent = time;
+    document.getElementById('next-event').classList.add('is-loaded');
+
+    if (/^https:\/\/coderdojoiida\.connpass\.com\//.test(ev.url || '')) {
+      document.getElementById('next-event').href = ev.url;
+      document.getElementById('hero-apply').href = ev.url;
+    }
+  }
+
+  if (!window.fetch) return;
+  fetch('data/next-event.json', { cache: 'no-cache' })
+    .then(function (res) { return res.ok ? res.json() : null; })
+    .then(function (data) { if (data && data.next) render(data.next); })
+    .catch(function () { /* 取得できなければ「connpassでご確認ください」のまま */ });
 })();
